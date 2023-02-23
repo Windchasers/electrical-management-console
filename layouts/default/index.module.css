@@ -1,0 +1,26 @@
+.wrap{
+    height: 100%;
+    position: fixed;
+    width: 100%;
+ 
+}
+
+.menu{
+    background-color: rgb(249, 249, 249);
+    width:256px;
+    height:100%;
+    overflow-y:scroll;
+}
+
+.main{
+    position: fixed;
+    top: 50px;
+    left: 256px;
+    background-color: white;
+    width: -webkit-calc(100% - 280px);
+    height: -webkit-calc(100% - 74px);
+    padding:12px;
+    overflow-y:scroll;
+    margin: 12px;
+
+}

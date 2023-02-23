@@ -1,0 +1,10 @@
+.wrap {
+    
+    height: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    align-items: center;
+    border-bottom: solid 1px rgb(242, 242, 242);
+}
