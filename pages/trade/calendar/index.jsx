@@ -1,4 +1,5 @@
-import { Badge, Calendar } from 'antd';
+import { Badge, Calendar,Input } from 'antd';
+const { TextArea } = Input;
 const getListData = (value) => {
   let listData;
   switch (value.date()) {
@@ -81,14 +82,21 @@ const App = () => {
     const listData = getListData(value);
     return (
       <ul className="events">
+        
+        {/* <TextArea/> */}
         {listData.map((item) => (
           <li key={item.content}>
             <Badge status={item.type} text={item.content} />
+            
           </li>
         ))}
       </ul>
     );
   };
-  return <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} bordered/>;
+
+  const handleDateClick = (date)=>{
+    console.log(date);
+  }
+  return <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={handleDateClick} bordered/>;
 };
 export default App;
