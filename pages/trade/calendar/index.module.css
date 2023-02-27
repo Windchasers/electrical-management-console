@@ -17,3 +17,8 @@
   .notes-month section {
     font-size: 28px;
   }
+
+  .editHeader{
+    display: flex;
+    justify-content: space-between
+  }

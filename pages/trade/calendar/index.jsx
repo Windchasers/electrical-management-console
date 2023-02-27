@@ -1,67 +1,11 @@
+import { useEffect ,useState} from 'react'
 import { Badge, Calendar,Input } from 'antd';
+import {EditOutlined,CheckOutlined,CloseOutlined } from '@ant-design/icons'
+import styles from './index.module.css'
 const { TextArea } = Input;
-const getListData = (value) => {
-  let listData;
-  switch (value.date()) {
-    case 8:
-      listData = [
-        {
-          type: 'warning',
-          content: 'This is warning event.',
-        },
-        {
-          type: 'success',
-          content: 'This is usual event.',
-        },
-      ];
-      break;
-    case 10:
-      listData = [
-        {
-          type: 'warning',
-          content: 'This is warning event.',
-        },
-        {
-          type: 'success',
-          content: 'This is usual event.',
-        },
-        {
-          type: 'error',
-          content: 'This is error event.',
-        },
-      ];
-      break;
-    case 15:
-      listData = [
-        {
-          type: 'warning',
-          content: 'This is warning event',
-        },
-        {
-          type: 'success',
-          content: 'This is very long usual event。。....',
-        },
-        {
-          type: 'error',
-          content: 'This is error event 1.',
-        },
-        {
-          type: 'error',
-          content: 'This is error event 2.',
-        },
-        {
-          type: 'error',
-          content: 'This is error event 3.',
-        },
-        {
-          type: 'error',
-          content: 'This is error event 4.',
-        },
-      ];
-      break;
-    default:
-  }
-  return listData || [];
+
+const checkIsEdit = (edit,value) => {
+  return  edit.year() === value.year() && edit.month() === value.month() && edit.date() === value.date()
 };
 const getMonthData = (value) => {
   if (value.month() === 8) {
@@ -69,6 +13,7 @@ const getMonthData = (value) => {
   }
 };
 const App = () => {
+  const [edit,setEdit] = useState({year:()=>{return 0},month:()=>{return 0},date:()=>{return 0}})
   const monthCellRender = (value) => {
     const num = getMonthData(value);
     return num ? (
@@ -79,24 +24,26 @@ const App = () => {
     ) : null;
   };
   const dateCellRender = (value) => {
-    const listData = getListData(value);
+    const isEdit = checkIsEdit(edit,value)
     return (
       <ul className="events">
-        
-        {/* <TextArea/> */}
-        {listData.map((item) => (
+        <div className={styles.editHeader}><EditOutlined style={{ color: '#08c' }} onClick={()=>{handleDateEdit(value)}}/>
+        {isEdit && <div><CheckOutlined /><CloseOutlined /></div>}</div>
+       {isEdit && <TextArea/>}
+        {/* {listData.map((item) => (
           <li key={item.content}>
             <Badge status={item.type} text={item.content} />
             
           </li>
-        ))}
+        ))} */}
       </ul>
     );
   };
 
-  const handleDateClick = (date)=>{
-    console.log(date);
+  const handleDateEdit = (value)=>{
+    console.log(value,value.date());
+    setEdit(value)
   }
-  return <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={handleDateClick} bordered/>;
+  return <Calendar dateCellRender={dateCellRender}  bordered/>;
 };
 export default App;
