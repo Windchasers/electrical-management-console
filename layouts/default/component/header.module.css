@@ -8,3 +8,10 @@
     align-items: center;
     border-bottom: solid 1px rgb(242, 242, 242);
 }
+
+.title{
+    font-size: 18px;
+    font-weight: 400;
+    color: rgb(76, 76, 76);
+    margin-left: 12px;
+}

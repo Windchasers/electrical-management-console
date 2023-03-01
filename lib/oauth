@@ -1,0 +1,53 @@
+import React from 'react'
+import NextApp from 'next/app'
+import passport from 'passport'
+import { OAuthStrategy } from 'passport-oauth'
+
+// Configure the strategy with you app credentials.
+const strategy = new OAuthStrategy({
+  authorizationURL: 'https://your_auth_server.com/authorization',
+  tokenURL: 'https://your_auth_server.com/token',
+  clientID: 'YOUR_CLIENT_ID',
+  clientSecret: 'YOUR_SECRET_CODE',
+  callbackURL: '/auth/oauth/callback'
+})
+
+// Handles the callback to your application after user has authenticated.
+strategy.userProfile = async (accessToken, done) => {
+  try {
+    // Fetch profile information from the remote server
+    const profile = await fetch(`https://your_auth_server.com/profile?type=json&access_token=${accessToken}`)
+
+    // Store profile information to your database
+    await storeUserDataToDatabase(profile)
+    
+    done(null, profile)
+  } catch (error) {
+    done(error)
+  }
+}
+
+// Register the strategy
+passport.use(strategy)
+
+export default class MyApp extends NextApp {
+  // Handle authentication using Passport
+  handleAuthentication = async (req, res) => {
+      passport.authenticate('oauth', (err, user, info) => {
+        if (err || !user) {
+          return res.redirect('/error')
+        }
+
+        req.logIn(user, err => {
+          if (err) {
+            return res.redirect('/error')
+          }
+          return res.redirect('/profile')
+        });
+      })(req, res)
+  }
+  
+  render() {
+    // Your NextJS application render method here
+  }
+}

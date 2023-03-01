@@ -1,3 +1,16 @@
 .contents{
+    display: flex;
+    flex-direction: column;
+    
    
+}
+.topic{
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 600
+}
+.operationBar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
 }

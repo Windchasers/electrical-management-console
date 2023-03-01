@@ -150,6 +150,7 @@ const App = (props) => {
         dataSource={props.data}
         columns={mergedColumns}
         rowClassName="editable-row"
+        loading={props.loading}
         pagination={{
           onChange: cancel,
         }}

@@ -86,7 +86,8 @@ export default function Users() {
   
   return (
     <div className={styles.contents}>
-      签约客户管理<Button onClick={showModal}>新增</Button>
+      <div className={styles.topic}>签约客户管理</div>
+      <div className={styles.operationBar}><Button onClick={showModal}>新增</Button></div>
       <AddUser visible={isModalOpen} handleCancel={handleCancel} handleOk = {handleOk} form={form}/>
       <Table dataSource={dataSource} columns={columns} loading={loading} bordered />
     </div>

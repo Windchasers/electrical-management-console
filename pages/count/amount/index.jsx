@@ -19,11 +19,29 @@ const items = [
   },
 ];
 
+const monthMap = {
+  janurary: '一月',
+  feburary: '二月',
+  march:'三月',
+  april:'四月',
+  may:'五月',
+  june:'六月',
+  july:'七月',
+  august:'八月',
+  september:'九月',
+  october:'十月',
+  november:'十一月',
+  decemeber:'十二月'
+}
+
 const columns = [
   {
     title: '月份',
     dataIndex: 'month',
-    key: 'month'
+    key: 'month',
+    render: (_, record) => {
+      return (<div>{monthMap[record.month]}</div>)
+    }
   },
   {
     title: '用户实际总用水量',
@@ -104,7 +122,7 @@ export default function Users() {
       结算电量管理
       <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
       {/* <Table  dataSource={dataSource} columns={columnMap[activeKey]} loading={loading} bordered /> */}
-      <CombinedTable columns={columns} data={dataSource} handleEditSave={handleEditSave}/>
+      <CombinedTable columns={columns} data={dataSource} handleEditSave={handleEditSave} loading={loading}/>
     </div>
   )
 }
