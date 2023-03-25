@@ -88,8 +88,22 @@ export default function Users() {
     <div className={styles.contents}>
       <div className={styles.topic}>签约客户管理</div>
       <div className={styles.operationBar}><Button onClick={showModal}>新增</Button></div>
+      {/* <Tabs
+        defaultActiveKey="1"
+        tabPosition={mode}
+        style={{ height: 220 }}
+        items={new Array(30).fill(null).map((_, i) => {
+          const id = String(i);
+          return {
+            label: `Tab-${id}`,
+            key: id,
+            disabled: i === 28,
+            children: `Content of tab ${id}`,
+          };
+        })}
+      /> */}
       <AddUser visible={isModalOpen} handleCancel={handleCancel} handleOk = {handleOk} form={form}/>
-      <Table dataSource={dataSource} columns={columns} loading={loading} bordered />
+      <Table dataSource={dataSource} columns={columns  } loading={loading} bordered />
     </div>
   )
 }

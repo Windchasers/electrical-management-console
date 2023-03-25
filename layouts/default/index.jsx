@@ -24,8 +24,8 @@ const items = [
   getItem('交易管理', 'trade', <SettingOutlined />, [
     getItem('交易日历', '/trade/calendar'),
     getItem('预测电量', '/trade/expect'),
-    getItem('市场结果', '/trade/result'),
-    getItem('收益电价', '/trade/price'),
+    // getItem('市场结果', '/trade/result'),
+    // getItem('收益电价', '/trade/price'),
 
   ]),
   getItem('结算管理', 'count', <SettingOutlined />, [

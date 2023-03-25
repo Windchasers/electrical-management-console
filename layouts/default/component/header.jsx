@@ -1,5 +1,6 @@
 
 import { Button,Avatar,Dropdown,Space } from 'antd'
+import { signOut } from 'next-auth/react';
 import { UserOutlined } from '@ant-design/icons'
 import styles from './header.module.css'
 
@@ -15,7 +16,7 @@ const items = [
     {
         key: '2',
         label: (
-          <a target="_blank" rel="noopener noreferrer" >
+          <a target="_blank" rel="noopener noreferrer" onClick={()=>{signOut()}}>
            登出
           </a>
         ),

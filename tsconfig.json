@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/contract/index.jsx", "layouts/default.jsx", "layouts/default.jsx", "pages/_app.jsx", "pages/_app.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/contract/index.jsx", "layouts/default.jsx", "layouts/default.jsx", "pages/_app.jsx", "pages/_app.jsx", "pages/api/auth/[...nextauth].js", "pages/api/auth/[...nextauth].js", "pages/trade/calendar/util.js", "pages/trade/calendar/util.js", "pages/users/signed/index.jsx", "pages/users/signed/index.jsx"],
   "exclude": ["node_modules"]
 }
