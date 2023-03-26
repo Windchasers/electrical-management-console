@@ -33,4 +33,4 @@ jobs:
         username: ${{ secrets.REMOTE_USERNAME }} # 登陆服务器的用户名
         key: ${{ secrets.PRIVATE_KEY }} # 登陆服务器的密钥
         source: "./dist/"
-        target: "path/to/target/
+        target: "path/to/target/"
