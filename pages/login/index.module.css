@@ -1,0 +1,16 @@
+.wrap{
+    
+}
+
+.box{
+    position: absolute;
+  left: 150px;
+  top: 150px;
+  width: 480px;
+  height: 600px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.29);
+  backdrop-filter: blur(53px);
+  padding: 60px;
+    
+}

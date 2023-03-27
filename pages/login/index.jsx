@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../layouts/default'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { Form, Input, Button, Checkbox } from 'antd';
+import styles from './index.module.css'
 
 const LoginForm = () => {
     const [form] = Form.useForm();
@@ -30,21 +31,25 @@ const LoginForm = () => {
 
 
     return (
+        <div className={styles.wrap}>
+            <div className={styles.box}>
         <Form form={form}>
             <Form.Item name="username" label="用户名">
-                <Input />
+                <Input style={{ width: '100%', borderRadius:'4px' }}/>
             </Form.Item>
             <Form.Item name="password" label="密码">
-                <Input type="password" />
+                <Input style={{ width: '100%', borderRadius:'4px' }} type="password" />
             </Form.Item>
             <Form.Item>
-                <Checkbox>Remember me</Checkbox>
+                {/* <Checkbox>Remember me</Checkbox> */}
 
-                <Button type="primary" style={{ width: '100%' }} onClick={handleLogin}>
+                <Button type="primary" style={{ width: '100%', borderRadius:'4px' }} onClick={handleLogin}>
                     登陆
                 </Button>
             </Form.Item>
         </Form>
+        </div>
+        </div>
     );
 }
 
