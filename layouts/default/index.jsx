@@ -18,7 +18,7 @@ const items = [
     getItem('电厂客户管理', '/users/factory'),
   ]),
   getItem('合同管理', 'contract', <AppstoreOutlined />, [
-    getItem('合同概览', '/contract/summary'),
+    // getItem('合同概览', '/contract/summary'),
     getItem('签约合同', '/contract/signed'),
   ]),
   getItem('交易管理', 'trade', <SettingOutlined />, [
