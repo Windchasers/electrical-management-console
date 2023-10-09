@@ -5,6 +5,7 @@ import styles from './users.module.css'
 import { Table,Button,Form, message } from 'antd'
 import { useEffect ,useState} from 'react'
 import AddUser from './components/AddUser'
+import ClientList from '@/components/ClientList'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -103,7 +104,8 @@ export default function Users() {
         })}
       /> */}
       <AddUser visible={isModalOpen} handleCancel={handleCancel} handleOk = {handleOk} form={form}/>
-      <Table dataSource={dataSource} columns={columns  } loading={loading} bordered />
+      {/* <Table dataSource={dataSource} columns={columns  } loading={loading} bordered /> */}
+      <ClientList/>
     </div>
   )
 }
