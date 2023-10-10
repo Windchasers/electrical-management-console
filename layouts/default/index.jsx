@@ -13,9 +13,9 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem('客户管理', 'users', <MailOutlined />, [
-    getItem('签约客户管理', '/users/signed'),
-    getItem('电厂客户管理', '/users/factory'),
+  getItem('user-management', 'users', <MailOutlined />, [
+    getItem('user-signed', '/users/signed'),
+    getItem('user-factory', '/users/factory'),
   ]),
   getItem('合同管理', 'contract', <AppstoreOutlined />, [
     getItem('合同概览', '/contract/summary'),

@@ -20,14 +20,14 @@ const items = [
 ];
 
 const monthMap = {
-  janurary: '一月',
-  feburary: '二月',
-  march:'三月',
-  april:'四月',
-  may:'五月',
-  june:'六月',
-  july:'七月',
-  august:'八月',
+  janurary: 'janurary',
+  feburary: 'feburary',
+  march:'march',
+  april:'april',
+  may:'may',
+  june:'june',
+  july:'july',
+  august:'august',
   september:'九月',
   october:'十月',
   november:'十一月',
