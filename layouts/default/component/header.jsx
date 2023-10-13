@@ -27,12 +27,12 @@ const items = [
 export default function Header({  }) {
     return (
     <div className={styles.wrap}>
-        <div className={styles.title}>贯康电力系统</div>
+        <div className={styles.title}>electrical-management-console</div>
         
         <Dropdown menu={{ items }}>
     <a onClick={(e) => e.preventDefault()}>
       <Space>
-      <div>贯康电力</div> <Avatar size={32} icon={<UserOutlined />} />
+      <div>guankang</div> <Avatar size={32} icon={<UserOutlined />} />
       </Space>
     </a>
   </Dropdown>

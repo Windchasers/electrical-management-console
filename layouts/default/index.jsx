@@ -17,28 +17,28 @@ const items = [
     getItem('user-signed', '/users/signed'),
     getItem('user-factory', '/users/factory'),
   ]),
-  getItem('合同管理', 'contract', <AppstoreOutlined />, [
-    getItem('合同概览', '/contract/summary'),
-    getItem('签约合同', '/contract/signed'),
+  getItem('contract-management', 'contract', <AppstoreOutlined />, [
+    getItem('contract-summary', '/contract/summary'),
+    getItem('contract-signed', '/contract/signed'),
   ]),
-  getItem('交易管理', 'trade', <SettingOutlined />, [
-    getItem('交易日历', '/trade/calendar'),
-    getItem('预测电量', '/trade/expect'),
+  getItem('trade-management', 'trade', <SettingOutlined />, [
+    getItem('trade-calendar', '/trade/calendar'),
+    getItem('expectation', '/trade/expect'),
     // getItem('市场结果', '/trade/result'),
     // getItem('收益电价', '/trade/price'),
 
   ]),
-  getItem('结算管理', 'count', <SettingOutlined />, [
-    getItem('结算电量', '/count/amount'),
-    getItem('交易结算', '/count/trade'),
-    getItem('结算对比', '/count/compare'),
-    getItem('结算日志', '/count/log'),
-    getItem('费用回收', '/count/recycle'),
+  getItem('count-managment', 'count', <SettingOutlined />, [
+    getItem('count-amount', '/count/amount'),
+    getItem('count-trade', '/count/trade'),
+    getItem('count-compare', '/count/compare'),
+    getItem('count-log', '/count/log'),
+    getItem('count-recycle', '/count/recycle'),
 
   ]),
-  getItem('数据分析', 'data', <SettingOutlined />, [
-    getItem('客户简况', '/data/users'),
-    getItem('电量预测', '/data/expect')
+  getItem('data', 'data', <SettingOutlined />, [
+    getItem('user-data', '/data/users'),
+    getItem('expect-data', '/data/expect')
   ]),
  
 ];
