@@ -4,12 +4,12 @@ name: build-and-deploy-frontend-project
 on:
   push:
     branches:
-      - master
+      - test
       
 jobs:
   build-and-deploy:
     # 定义job运行环境，使用linux环境
-    runs-on: ubuntu-latest
+    runs-on: centos-latest
     steps:
     # 对应第2步，借助已有脚本拉取代码
     - name: Checkout
@@ -18,7 +18,7 @@ jobs:
     # 第3步的准备工作，先配置好node环境
     - uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '16'
     # 对应第3步，执行打包命令
     - name: 'Build'
       run: |
