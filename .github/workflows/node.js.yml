@@ -4,7 +4,7 @@ name: build-and-deploy-frontend-project
 on:
   push:
     branches:
-      - test
+      - master
       
 jobs:
   build-and-deploy:
