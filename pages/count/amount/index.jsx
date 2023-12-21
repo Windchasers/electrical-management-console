@@ -89,7 +89,7 @@ export default function Users() {
   // 获取结算列表
   const getCountList = async ()=>{
     setLoading(true)
-      const res = await fetch("http://localhost:3000/api/count", {
+      const res = await fetch(`/api/count`, {
             method: "GET",
           })
       const list = await res.json();
@@ -101,7 +101,7 @@ export default function Users() {
 
   const handleEditSave = async (row) => {
     try{
-    const res = await fetch("http://localhost:3000/api/count", {
+    const res = await fetch("/api/count", {
       method: "POST",
       body: JSON.stringify(row)
     })

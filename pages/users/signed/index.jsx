@@ -51,7 +51,7 @@ export default function Users() {
   // 获取用户列表
   const getUserList = async ()=>{
     setLoading(true)
-  const res = await fetch("http://localhost:3000/api/user", {
+  const res = await fetch(`/api/user`, {
         method: "GET",
       })
       const list = await res.json();
@@ -63,7 +63,7 @@ export default function Users() {
 
   const handleAddUser = async ()=>{
   try {
-    let res = await fetch("http://localhost:3000/api/user", {
+    let res = await fetch(`/api/user`, {
       method: "POST",
       body: JSON.stringify(
         form.getFieldsValue()

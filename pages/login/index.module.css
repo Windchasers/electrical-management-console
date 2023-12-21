@@ -1,5 +1,5 @@
 .wrap{
-    
+ 
 }
 
 .box{
@@ -7,10 +7,17 @@
   left: 150px;
   top: 150px;
   width: 480px;
-  height: 600px;
+  height: 80%;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.29);
   backdrop-filter: blur(53px);
   padding: 60px;
     
+}
+
+.header{
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(73, 73, 73);
+  margin-bottom: 12px;
 }

@@ -20,7 +20,7 @@ const ClientList = (props) => {
   // 获取用户列表
   const getUserList = async ()=>{
     setLoading(true)
-  const res = await fetch("http://localhost:3000/api/user", {
+  const res = await fetch(`/api/user`, {
         method: "GET",
       })
       const list = await res.json();

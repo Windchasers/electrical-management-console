@@ -33,6 +33,7 @@ const LoginForm = () => {
     return (
         <div className={styles.wrap}>
             <div className={styles.box}>
+                <div className={styles.header}>贯康电力系统</div>
         <Form form={form}>
             <Form.Item name="username" label="用户名">
                 <Input style={{ width: '100%', borderRadius:'4px' }}/>

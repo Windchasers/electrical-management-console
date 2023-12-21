@@ -13,6 +13,7 @@ const getMonthData = (value) => {
     return 1394;
   }
 };
+console.log('ll',`/api/trade-calendar`,process.env)
 const App = () => {
   const [calendarData,setCalendarData] = useState([{content:'1'}])
   const [edit,setEdit] = useState(emptyTime)
@@ -74,7 +75,8 @@ const App = () => {
 
   const getCalendarData = async ()=>{
     try {
-      const res = await fetch("http://localhost:3000/api/trade-calendar", {
+      
+      const res = await fetch(`/api/trade-calendar`, {
       method: "GET"
     })
     const list = await res.json()
@@ -97,7 +99,7 @@ const App = () => {
       data.key = formatDateKey(edit.year(),edit.month(),edit.date())
       data.content = eventInput
       console.log('ei',edit.month(),data);
-      const res = await fetch("http://localhost:3000/api/trade-calendar", {
+      const res = await fetch(`/api/trade-calendar`, {
       method: "POST",
       body: JSON.stringify(data)
     })
