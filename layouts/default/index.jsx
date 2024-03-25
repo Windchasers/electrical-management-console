@@ -1,5 +1,6 @@
 import { MailOutlined, SettingOutlined,AppstoreOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import { useEffect } from 'react';
 import Header from './component/header'
 import styles from './index.module.css'
 import { useRouter } from 'next/router'
@@ -44,10 +45,19 @@ const items = [
 ];
 const Layout = ({children}) => {
   const router = useRouter()
+
   const onClick = (e) => {
     router.push(e.key)
     console.log('click ', e);
   };
+
+  useEffect(()=>{
+    // make sure the default select menu matches the route
+    if(router.pathname === '/'){
+      console.log(222);
+      router.push('/users/signed')
+    }
+  },[])
   return ( 
     <div className={styles.wrap}>
     <Header></Header>

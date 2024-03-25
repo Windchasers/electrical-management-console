@@ -74,6 +74,8 @@
 }
 
 * {
+  /* height:100%; */
+  
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -81,6 +83,7 @@
 
 html,
 body {
+  
   height: 100%;
   max-width: 100vw;
  }
@@ -88,7 +91,10 @@ body {
 body {
 
   color: rgb(var(--foreground-rgb));
-  background:rgb(245, 245, 245);
+  background: url('../public/bg2.png') no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
 }
 
 a {

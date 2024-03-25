@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { getToken } from "next-auth/jwt"
+import { useRouter } from 'next/router'
 
-export async function middleware(req:any) {
+export async function middleware(req: any) {
 
     //获取token
     const session = await getToken({
@@ -26,17 +27,24 @@ export async function middleware(req:any) {
 
     // }
 
-    console.log(session);
-    
+    // console.log('session', session);
 
-    const checkToken = (session:any) => {
+
+    const checkToken = (session: any) => {
         if (!session) {
             return NextResponse.rewrite(new URL('/login', req.url))
         } else {
             return NextResponse.next()
         }
-    }
 
+    }
+    // if(req.nextUrl.pathname === '/'){
+    //     return NextResponse.rewrite(new URL('/users/signed', req.url))
+    // }
+
+
+    console.log('req:', req.nextUrl.pathname)
+    // return checkToken(session)
 
 
     if (req.nextUrl.pathname.startsWith('/users')) {
@@ -63,6 +71,8 @@ export async function middleware(req:any) {
         // This logic is only applied to /about
         return checkToken(session)
     }
+
+
 
 
 

@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import styles from './index.module.css'
 import { useEffect } from 'react'
-
+import ComingSoon from '@/components/ComingSoon'
 
 
 export default function Users() {
@@ -12,8 +12,6 @@ export default function Users() {
   })
   
   return (
-    <div className={styles.contents}>
-      contract-signed
-    </div>
+    <ComingSoon/>
   )
 }

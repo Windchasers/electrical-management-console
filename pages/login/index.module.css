@@ -1,13 +1,15 @@
 .wrap{
+  
+  height:100%;
  
 }
 
 .box{
-    position: absolute;
+    position: fixed;
   left: 150px;
   top: 150px;
   width: 480px;
-  height: 80%;
+  height: 75%;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.29);
   backdrop-filter: blur(53px);
@@ -19,5 +21,10 @@
   font-size: 30px;
   font-weight: 600;
   color: rgb(73, 73, 73);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.ant-input {
+  background: white;
 }

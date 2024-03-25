@@ -3,6 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { connectToDatabase } from "../../../lib/mongodb";
 import { compare } from 'bcryptjs';
 
+
 //配置next-auth，参考https://next-auth.js.org/configuration/options
 export default NextAuth({
     // provider配置凭证登录
@@ -22,20 +23,25 @@ export default NextAuth({
                  const result = await db.collection('org').findOne({
                     username: credentials.username,
                 });
+                // console.log('result:',result);
                  //Find user with the email  
                 
                  //Not found - send error res
                  if (!result) {
+                    return {status:'reject'}
                      throw new Error('No user found with the username');
                  }
                  //Check hased password with DB password
-                //  const checkPassword = await compare(credentials.passowrd, result.passowrd);
-                //  //Incorrect password - send response
-                //  if (!checkPassword) {
-    
-                //      throw new Error('Password doesnt match');
-                //  }
-                //  //Else send success response
+                //  const checkPassword = await compare(credentials.password, result.password);
+                 const checkPassword = credentials.password === result.password
+
+                 console.log('checkP:',checkPassword,credentials.password,result.password);
+                 //Incorrect password - send response
+                 if (!checkPassword) {
+                    return {status:'reject'}
+                     throw new Error('Password doesnt match');
+                 }
+                 //Else send success response
             
                  return { username: result.username };
                 
@@ -55,9 +61,11 @@ export default NextAuth({
     callbacks: {//回调函数
         async signIn({ user, account, profile, email, credentials }) {
             //登录回调，如果authorize不成功，重定向到login界面，并附带错误信息参数
-            // if(user?.status==='reject' ){
-            //     return '/login/?msg=invalid'
-            // }
+            console.log('user:',user);
+            if(user?.status==='reject' ){
+                console.log(666);
+                return '/login/?msg=invalid'
+            }
             return true
         },
         // async redirect({ url, baseUrl }) {//不设置回调，直接默认使用url

@@ -19,8 +19,9 @@
     background-color: white;
     width: -webkit-calc(100% - 280px);
     height: -webkit-calc(100% - 74px);
-    padding:12px;
+    padding:24px;
     overflow-y:scroll;
     margin: 12px;
+    /* height:100% */
 
 }

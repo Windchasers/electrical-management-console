@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../layouts/default'
 import { useSession, signIn, signOut } from "next-auth/react"
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox ,message} from 'antd';
 import styles from './index.module.css'
 
 const LoginForm = () => {
@@ -15,11 +15,12 @@ const LoginForm = () => {
             await signIn("credentials", {
                 redirect: true,
                 ...values
-              });
+              })
             // const list = await res.json();
             // console.log(list);
         } catch (errorInfo) {
             console.log('Failed:', errorInfo);
+
         }
         // signIn()
 
@@ -36,10 +37,10 @@ const LoginForm = () => {
                 <div className={styles.header}>贯康电力系统</div>
         <Form form={form}>
             <Form.Item name="username" label="用户名">
-                <Input style={{ width: '100%', borderRadius:'4px' }}/>
+                <Input style={{ width: '100%', borderRadius:'4px', borderColor:'#ccd3fa' }}/>
             </Form.Item>
             <Form.Item name="password" label="密码">
-                <Input style={{ width: '100%', borderRadius:'4px' }} type="password" />
+                <Input style={{ width: '100%', borderRadius:'4px',borderColor: '#ccd3fa' }} type="password" />
             </Form.Item>
             <Form.Item>
                 {/* <Checkbox>Remember me</Checkbox> */}

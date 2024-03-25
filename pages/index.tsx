@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <div className={styles.home}>
- <Button>111</Button>
+ <Button>登陆</Button>
     </div>
   )
 }
