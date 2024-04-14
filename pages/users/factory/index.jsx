@@ -14,6 +14,10 @@ export default function Users() {
   })
   
   return (
-    <ComingSoon/>
+    <div className={styles.wrap}>
+    <div className={styles.pageHead}>电厂客户管理</div>
+   
+
+   </div>
   )
 }

@@ -119,7 +119,7 @@ export default function Users() {
   
   return (
     <div className={styles.contents}>
-      结算电量管理
+      <div className={styles.pageHead}>结算电量管理</div>
       <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
       {/* <Table  dataSource={dataSource} columns={columnMap[activeKey]} loading={loading} bordered /> */}
       <CombinedTable columns={columns} data={dataSource} handleEditSave={handleEditSave} loading={loading}/>

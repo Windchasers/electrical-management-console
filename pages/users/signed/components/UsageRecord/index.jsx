@@ -1,11 +1,11 @@
 import { Inter } from '@next/font/google'
 import styles from './users.module.css'
-import { Card, Button, Form, Avatar, Descriptions, Divider, Table, message } from 'antd'
+import { Card, Button, Form, Avatar, Descriptions, Divider,Table, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react'
 import CurdUserModal from './components/CurdUserModal'
+import CurdUserServiceRecordModal from './components/CurdUserServiceRecordModal'
 import ClientList from '@/components/ClientList'
-import SupplementInfo from './components/SupplementInfo'
 import { formUserStatus } from './utils'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -57,7 +57,7 @@ export default function Users() {
   const [loading, setLoading] = useState(false)
   const [currUser, setCurrUser] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [serviceData, setServiceData] = useState([])
+  const [serviceData,setServiceData] = useState([])
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -131,11 +131,10 @@ export default function Users() {
 
   return (
     <div className={styles.contents}>
-      <div className={styles.topic}>签约客户管理</div>
-      <div className={styles.interfaceWrap}>
-        <div className={styles.left}>
-          <div className={styles.operationBar}><Button onClick={showModal}>新增</Button></div>
-          {/* <Tabs
+      <div className={styles.left}>
+        <div className={styles.topic}>签约客户管理</div>
+        <div className={styles.operationBar}><Button onClick={showModal}>新增</Button></div>
+        {/* <Tabs
         defaultActiveKey="1"
         tabPosition={mode}
         style={{ height: 220 }}
@@ -149,30 +148,35 @@ export default function Users() {
           };
         })}
       /> */}
-          <CurdUserModal visible={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} form={form} />
-          {/* <Table dataSource={dataSource} columns={columns  } loading={loading} bordered /> */}
-          <ClientList onClick={onClick} />
-        </div>
-        <div className={styles.right}>
-          <Card title="签约客户信息" style={cardStyle}>
-            <Meta
-              avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
-              title={currUser.name ?? '暂未选择客户'}
-              description={currUser ? currUser.desc : '请选择目标客户'}
-            />
-            <Divider />
-            <Descriptions>
-              <Descriptions.Item label="客户编号">{currUser.code}</Descriptions.Item>
-              <Descriptions.Item label="客户状态">{formUserStatus(currUser.status)}</Descriptions.Item>
-              <Descriptions.Item label="所属区域">{currUser.region}</Descriptions.Item>
-              <Descriptions.Item label="客户经理">{currUser.manager}</Descriptions.Item>
-              <Descriptions.Item label="详细地址">{currUser.address}</Descriptions.Item>
-            </Descriptions>
-          </Card>
-          <SupplementInfo />
+        <CurdUserModal visible={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} form={form} />
+        {/* <Table dataSource={dataSource} columns={columns  } loading={loading} bordered /> */}
+        <ClientList onClick={onClick} />
+      </div>
+      <div className={styles.right}>
+        <Card title="签约客户信息" style={cardStyle}>
+          <Meta
+            avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
+            title={currUser.name??'暂未选择客户'}
+            description={currUser?currUser.desc:'请选择目标客户'}
+          />
+          <Divider/>
+          <Descriptions>
+            <Descriptions.Item label="客户编号">{currUser.code}</Descriptions.Item>
+            <Descriptions.Item label="客户状态">{formUserStatus(currUser.status)}</Descriptions.Item>
+            <Descriptions.Item label="所属区域">{currUser.region}</Descriptions.Item>
+            <Descriptions.Item label="客户经理">{currUser.manager}</Descriptions.Item>
+            <Descriptions.Item label="详细地址">{currUser.address}</Descriptions.Item>
+          </Descriptions>
+        </Card>
+        <Card title="客户服务记录" style={cardStyle} extra={<Button shape="circle" icon={<PlusOutlined />} />}>
+        <Table columns={serviceColumns} dataSource={serviceData??[]} />
+        </Card>
+        <Card title="用电档案" style={cardStyle}></Card>
+        <Card title="设备管理" style={cardStyle}></Card>
+        <Card title="上传资质" style={cardStyle}></Card>
+        <Card title="其他信息" style={cardStyle}></Card>
 
 
-        </div>
       </div>
     </div>
   )

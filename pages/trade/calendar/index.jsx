@@ -120,6 +120,11 @@ const App = () => {
   useEffect(()=>{
     getCalendarData()
   },[])
-  return <Calendar dateCellRender={dateCellRender}  bordered/>;
+  return (
+  <div>
+    <div className={styles.pageHead}>交易日历</div>
+    <Calendar dateCellRender={dateCellRender}  bordered/>
+    </div>
+  );
 };
 export default App;

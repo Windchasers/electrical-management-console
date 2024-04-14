@@ -1,16 +1,34 @@
 .contents{
     display: flex;
     flex-direction: column;
-    
    
+}
+.interfaceWrap{
+    display: flex;
+    flex-direction: row;
+    height:100%;
 }
 .topic{
     margin-bottom: 24px;
-    font-size: 18px;
-    font-weight: 600
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: solid 1px rgb(239, 239, 239); 
+    padding-bottom: 24px;
 }
 .operationBar{
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
+}
+.left{
+    overflow-y: scroll;
+    width: 280px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-y: scroll;
 }
