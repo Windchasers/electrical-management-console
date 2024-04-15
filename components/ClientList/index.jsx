@@ -42,7 +42,6 @@ const ClientList = (props) => {
 
   return (
     <div>
-      <Divider />
       <div className={styles.header}>客户列表</div>
       <Divider />
       <div className={styles.menu}>

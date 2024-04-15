@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import CurdUserModal from './components/CurdUserModal'
 import ClientList from '@/components/ClientList'
 import SupplementInfo from './components/SupplementInfo'
+import UserServiceRecord from './components/UserServiceRecord'
 import { formUserStatus } from './utils'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -116,10 +117,10 @@ export default function Users() {
   }
 
   const onClick = async (user) => {
-    console.log('ppclk:', user);
+
     const userInstance = await getUser(user.key)
     setCurrUser(userInstance.data)
-    console.log('userIns', userInstance);
+
   }
 
 
@@ -135,20 +136,6 @@ export default function Users() {
       <div className={styles.interfaceWrap}>
         <div className={styles.left}>
           <div className={styles.operationBar}><Button onClick={showModal}>新增</Button></div>
-          {/* <Tabs
-        defaultActiveKey="1"
-        tabPosition={mode}
-        style={{ height: 220 }}
-        items={new Array(30).fill(null).map((_, i) => {
-          const id = String(i);
-          return {
-            label: `Tab-${id}`,
-            key: id,
-            disabled: i === 28,
-            children: `Content of tab ${id}`,
-          };
-        })}
-      /> */}
           <CurdUserModal visible={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} form={form} />
           {/* <Table dataSource={dataSource} columns={columns  } loading={loading} bordered /> */}
           <ClientList onClick={onClick} />
@@ -170,6 +157,7 @@ export default function Users() {
             </Descriptions>
           </Card>
           <SupplementInfo />
+          <UserServiceRecord/>
 
 
         </div>

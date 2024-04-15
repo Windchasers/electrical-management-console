@@ -20,3 +20,18 @@ export const checkDateKey = (value, key)=>{
     return compareKey === key
 
 }
+
+export const monthMap = {
+    janurary: '一月',
+    feburary: '二月',
+    march:'三月',
+    april:'四月',
+    may:'五月',
+    june:'六月',
+    july:'七月',
+    august:'八月',
+    september:'九月',
+    october:'十月',
+    november:'十一月',
+    decemeber:'十二月'
+  }

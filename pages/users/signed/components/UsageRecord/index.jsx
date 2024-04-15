@@ -172,9 +172,7 @@ export default function Users() {
         <Table columns={serviceColumns} dataSource={serviceData??[]} />
         </Card>
         <Card title="用电档案" style={cardStyle}></Card>
-        <Card title="设备管理" style={cardStyle}></Card>
-        <Card title="上传资质" style={cardStyle}></Card>
-        <Card title="其他信息" style={cardStyle}></Card>
+      
 
 
       </div>
