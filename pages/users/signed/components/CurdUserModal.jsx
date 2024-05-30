@@ -4,14 +4,14 @@ import Image from 'next/image'
 // import styles from './index.module.css'
 import { useEffect, useState } from 'react'
 import { useStepsForm } from 'sunflower-antd';
-import { Modal, Form, Input, Select, Steps, Button, DatePicker } from 'antd'
+import { Modal, Form, Input, Select, Steps, Button, DatePicker,message } from 'antd'
 
 const layout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 18 },
 };
 const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
+  wrapperCol: { offset: 18, span: 10 },
 };
 
 const steps = [
@@ -41,6 +41,104 @@ const steps = [
   // },
 ];
 
+export default function CurdUserModal(props) {
+  const {
+    form,
+    formValues,
+    current,
+    gotoStep,
+    stepsProps,
+    formProps,
+    submit,
+    formLoading,
+  } = useStepsForm({
+    async submit(values) {
+      const { status, email, desc } = values;
+      console.log('values', status, email, desc,values);
+      // await new Promise(r => setTimeout(r, 1000));
+      try {
+      let res = await fetch(`/api/user`, {
+        method: "POST",
+        body: JSON.stringify(
+          values
+        ),
+      });
+      res = await res.json();
+      message.success('添加签约客户成功')
+    } catch (error) {
+      message.error(error.message)
+    }
+    props.refresh()
+      props.handleCancel()
+      return 'ok';
+    },
+    total: 5,
+  });
+
+  const addUser = async () => {
+    console.log('values', formValues);
+    // try {
+    //   let res = await fetch(`/api/user`, {
+    //     method: "POST",
+    //     body: JSON.stringify(
+    //       form.getFieldsValue()
+    //     ),
+    //   });
+    //   res = await res.json();
+    //   message.success('添加签约客户成功')
+    // } catch (error) {
+    //   message.error(error.message)
+    // }
+    // props.refresh()
+
+  }
+
+  const items = steps.map((item) => ({ key: item.title, title: item.title }));
+
+  return (
+    <Modal width='1024px' title="新增用户" open={props.visible} onCancel={props.handleCancel} footer={null}
+    >
+      <Steps {...stepsProps} style={{ marginBottom: 24, marginTop: 24 }} current={current} items={items} />
+      <Form
+        name="basic"
+        autoComplete="off"
+        {...layout}
+        {...formProps}
+        initialValues={{ status: 'unsigned', unit: 'company', electricalUnit: 'guankang' }}
+      >
+        {formList[current]}
+        <Form.Item {...tailLayout} >
+          <div style={{marginTop:24, display:'flex',justifyContent: 'flex-end'}}>
+          {current < steps.length - 1 && (
+            <Button type="primary" style={{ marginRight: '8px' }} onClick={() => gotoStep(current + 1)}>
+              下一步
+            </Button>
+          )}
+          {current > 0 && (
+            <Button style={{ marginRight: '8px' }} onClick={() => gotoStep(current - 1)}>
+              上一步
+            </Button>)}
+          {current === steps.length - 1 && 
+          <Button
+            style={{ marginRight: 10 }}
+            type="primary"
+            loading={formLoading}
+            onClick={() => {
+              submit().then(result => {
+                if (result === 'ok') {
+                  gotoStep(current + 1);
+                }
+              });
+            }}
+          >确定</Button>}
+          <Button onClick={()=>{props.handleCancel()}}>取消</Button>
+          </div>
+        </Form.Item>
+      </Form>
+    </Modal>
+  )
+}
+
 const formList = [
   <>
     <Form.Item
@@ -63,7 +161,6 @@ const formList = [
       rules={[{ required: true, message: '请选择签约客户状态' }]}
     >
       <Select
-        defaultValue="unsigned"
         style={{ width: '100%' }}
         options={[
           { value: 'unsigned', label: '未签约' },
@@ -94,7 +191,6 @@ const formList = [
       rules={[{ required: true, message: '交易单元不能为空' }]}
     >
       <Select
-        defaultValue="company"
         style={{ width: '100%' }}
         options={[
           { value: 'company', label: '售电公司' },
@@ -103,11 +199,10 @@ const formList = [
     </Form.Item>
     <Form.Item
       label="用电单元"
-      name="unit"
+      name="electricalUnit"
       rules={[{ required: true, message: '用电单元不能为空' }]}
     >
       <Select
-        defaultValue="guankang"
         style={{ width: '100%' }}
         options={[
           { value: 'guankang', label: '贯康电力用电单元' },
@@ -336,13 +431,7 @@ const formList = [
   <>
     <Form.Item
       label="企业名称"
-      name="companyName"
-      rules={[
-        {
-          required: true,
-          message: '请输入企业名称',
-        },
-      ]}
+      name="bankCompanyName"
     >
       <Input placeholder="请输入企业名称" />
     </Form.Item>
@@ -377,55 +466,3 @@ const formList = [
     </Form.Item>
   </>
 ]
-
-export default function CurdUserModal(props) {
-  const {
-    form,
-    current,
-    gotoStep,
-    stepsProps,
-    formProps,
-    submit,
-    formLoading,
-  } = useStepsForm({
-    async submit(values) {
-      const { username, email, address } = values;
-      console.log(username, email, address);
-      await new Promise(r => setTimeout(r, 1000));
-      return 'ok';
-    },
-    total: 5,
-  });
-
-  const items = steps.map((item) => ({ key: item.title, title: item.title }));
-
-  return (
-    <Modal width='1024px' title="新增用户" open={props.visible} onOk={props.handleOk} onCancel={props.handleCancel} okText='确定' cancelText='取消'
-      footer={(_, { OkBtn, CancelBtn }) => (
-        <>
-          {current < steps.length - 1 && (
-            <Button type="primary" onClick={() => gotoStep(current + 1)}>
-              下一步
-            </Button>
-          )}
-          {current > 0 && (
-            <Button style={{ margin: '0 8px' }} onClick={() => gotoStep(current - 1)}>
-              上一步
-            </Button>)}
-          <CancelBtn />
-          {current === steps.length - 1 && (<OkBtn />)}
-        </>
-      )}
-    >
-      <Steps {...stepsProps} style={{ marginBottom: 24, marginTop: 24 }} current={current} items={items} />
-      <Form
-        name="basic"
-        autoComplete="off"
-        {...layout}
-        {...formProps}
-      >
-        {formList[current]}
-      </Form>
-    </Modal>
-  )
-}

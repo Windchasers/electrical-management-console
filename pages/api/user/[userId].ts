@@ -17,9 +17,15 @@ export default async function handler(
   switch (req.method) {
     case "GET":   
       const query = req.query.userId
-      console.log('Id',query)
+      // console.log('Id',query)
       const posts = await db.collection("user").findOne({_id:new ObjectId(query)});
       res.json({ status: 200, data: posts });
+      break;
+    case "DELETE":
+      const dquery = req.query.userId
+      console.log('DelId',dquery)
+      const ans = await db.collection("user").deleteOne({_id:new ObjectId(dquery)});
+      res.json({ status: 200, data: ans });
       break;
   }
 

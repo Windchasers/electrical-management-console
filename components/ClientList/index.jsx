@@ -40,6 +40,11 @@ const ClientList = (props) => {
     getUserList()
   }, [])
 
+  useEffect(()=>{
+    getUserList()
+    props.setter(false)
+  },[props.refreshFlag])
+
   return (
     <div>
       <div className={styles.header}>客户列表</div>

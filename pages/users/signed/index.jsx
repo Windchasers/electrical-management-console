@@ -1,6 +1,6 @@
 import { Inter } from '@next/font/google'
 import styles from './users.module.css'
-import { Card, Button, Form, Avatar, Descriptions, Divider, Table, message } from 'antd'
+import { Card, Button, Form, Avatar, Descriptions, Divider, Table, message,Modal } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react'
 import CurdUserModal from './components/CurdUserModal'
@@ -54,8 +54,9 @@ const serviceColumns = [
 ];
 
 export default function Users() {
-  const [dataSource, setDataSourceState] = useState([]);
+  const { confirm } = Modal;
   const [loading, setLoading] = useState(false)
+  const [refreshUserFlag,setRefreshUserFlag] = useState(false)
   const [currUser, setCurrUser] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [serviceData, setServiceData] = useState([])
@@ -75,19 +76,6 @@ export default function Users() {
   };
 
   const [form] = Form.useForm();
-
-  // 获取用户列表
-  const getUserList = async () => {
-    setLoading(true)
-    const res = await fetch(`/api/user`, {
-      method: "GET",
-    })
-    const list = await res.json();
-    console.log(list);
-
-    setDataSourceState(list.data);
-    setLoading(false)
-  }
 
   const getUser = async (id) => {
     setLoading(true)
@@ -112,9 +100,38 @@ export default function Users() {
     } catch (error) {
       message.error(error.message)
     }
-    getUserList()
+
 
   }
+
+  const showDeleteUserConfirm = () => {
+    confirm({
+      title: '确认删除当前用户吗？',
+      content: '删除操作将无法回退，用户关联数据可能被清理',
+      okText: '确认',
+      okType: 'danger',
+      cancelText: '取消',
+      onOk:async()=> {
+        try {
+          setLoading(true)
+          console.log(666,currUser);
+          const res = await fetch(`/api/user/${currUser._id}`, {
+            method: "DELETE",
+          })
+          const user = await res.json();
+          message.success('删除签约客户成功')
+        } catch (error) {
+          message.error(error.message)
+        }
+        setCurrUser({})
+        refreshUserList()
+
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  };
 
   const onClick = async (user) => {
 
@@ -123,11 +140,14 @@ export default function Users() {
 
   }
 
+  const refreshUserList = ()=> {
+    setRefreshUserFlag(true)
+  }
+
 
 
   useEffect(() => {
-    // console.log(666);
-    getUserList()
+
   }, [])
 
   return (
@@ -136,12 +156,14 @@ export default function Users() {
       <div className={styles.interfaceWrap}>
         <div className={styles.left}>
           <div className={styles.operationBar}><Button onClick={showModal}>新增</Button></div>
-          <CurdUserModal visible={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} form={form} />
+          <CurdUserModal visible={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} form={form} refresh={refreshUserList} />
           {/* <Table dataSource={dataSource} columns={columns  } loading={loading} bordered /> */}
-          <ClientList onClick={onClick} />
+          <ClientList onClick={onClick} refreshFlag={refreshUserFlag} setter={setRefreshUserFlag} />
         </div>
         <div className={styles.right}>
-          <Card title="签约客户信息" style={cardStyle}>
+          <Card title="签约客户信息" style={cardStyle}
+          extra={currUser.name ?<Button type='primary' onClick={showDeleteUserConfirm} danger>删除</Button>:''}
+          >
             <Meta
               avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
               title={currUser.name ?? '暂未选择客户'}
