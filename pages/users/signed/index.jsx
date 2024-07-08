@@ -126,7 +126,7 @@ export default function Users() {
         setCurrUser({})
         refreshUserList()
 
-      },
+      }, 
       onCancel() {
         console.log('Cancel');
       },

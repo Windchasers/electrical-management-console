@@ -43,6 +43,7 @@ export default function CurdUserModal(props) {
         name="basic"
         autoComplete="off"
         form={props.form}
+        initialValues={{ type: 'unsigned', tradeUnit: 'company', unit: 'guankang' }}
       >
         <Form.Item 
           label="合约编号"
@@ -64,7 +65,6 @@ export default function CurdUserModal(props) {
           rules={[{ required: true, message: '请选择合约类型' }]}
         >
           <Select
-            defaultValue="unsigned"
             style={{ width: '100%' }}
             options={[
               { value: 'unsigned', label: '未签约' },
@@ -91,11 +91,10 @@ export default function CurdUserModal(props) {
         </Form.Item>
         <Form.Item
           label="交易单元"
-          name="unit"
+          name="tradeUnit"
           rules={[{ required: true, message: '交易单元不能为空' }]}
         >
           <Select
-            defaultValue="company"
             style={{ width: '100%' }}
             options={[
               { value: 'company', label: '售电公司' },
@@ -108,7 +107,6 @@ export default function CurdUserModal(props) {
           rules={[{ required: true, message: '用电单元不能为空' }]}
         >
           <Select
-            defaultValue="guankang"
             style={{ width: '100%' }}
             options={[
               { value: 'guankang', label: '贯康电力用电单元' },

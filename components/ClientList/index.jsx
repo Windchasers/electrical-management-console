@@ -42,7 +42,8 @@ const ClientList = (props) => {
 
   useEffect(()=>{
     getUserList()
-    props.setter(false)
+    if(props.setter)
+      props.setter(false)
   },[props.refreshFlag])
 
   return (
